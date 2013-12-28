@@ -2,11 +2,11 @@
   "RSpec": {
     "coverage": {
     },
-    "timestamp": 1388223553
+    "timestamp": 1388266732
   },
   "Cucumber Features": {
     "coverage": {
-      "D:/NU-Master_Cources/SoftwareEngineering/Oastaz Project/Ostaz2/app/controllers/accounts_controller.rb": [
+      "D:/NU-Master_Cources/SoftwareEngineering/Oastaz Project/Ostaz2/app/controllers/account_types_controller.rb": [
         1,
         null,
         null,
@@ -100,16 +100,112 @@
         1,
         null
       ],
+      "D:/NU-Master_Cources/SoftwareEngineering/Oastaz Project/Ostaz2/app/helpers/account_types_helper.rb": [
+        1,
+        null
+      ],
       "D:/NU-Master_Cources/SoftwareEngineering/Oastaz Project/Ostaz2/app/helpers/accounts_helper.rb": [
         1,
+        null
+      ],
+      "D:/NU-Master_Cources/SoftwareEngineering/Oastaz Project/Ostaz2/app/models/account_type.rb": [
+        1,
+        1,
+        null
+      ],
+      "D:/NU-Master_Cources/SoftwareEngineering/Oastaz Project/Ostaz2/app/controllers/accounts_controller.rb": [
+        1,
+        null,
+        null,
+        1,
+        0,
+        null,
+        0,
+        0,
+        0,
+        null,
+        null,
+        null,
+        null,
+        null,
+        1,
+        0,
+        null,
+        0,
+        0,
+        0,
+        null,
+        null,
+        null,
+        null,
+        null,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        null,
+        null,
+        null,
+        null,
+        1,
+        0,
+        0,
+        null,
+        null,
+        null,
+        null,
+        1,
+        0,
+        null,
+        0,
+        0,
+        0,
+        0,
+        null,
+        0,
+        0,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        1,
+        0,
+        null,
+        0,
+        0,
+        0,
+        0,
+        null,
+        0,
+        0,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        1,
+        0,
+        0,
+        null,
+        0,
+        0,
+        0,
+        null,
+        null,
         null
       ],
       "D:/NU-Master_Cources/SoftwareEngineering/Oastaz Project/Ostaz2/app/models/account.rb": [
         1,
         1,
+        1,
         null
       ]
     },
-    "timestamp": 1388223517
+    "timestamp": 1388268944
   }
 }
