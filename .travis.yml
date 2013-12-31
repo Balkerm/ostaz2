@@ -14,4 +14,5 @@ notifications:
 branches:
   only:
     - develop
+before_install: gem install cucumber
 script: bundle exec rake cucumber
