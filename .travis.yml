@@ -14,4 +14,4 @@ notifications:
 branches:
   only:
     - develop
-script: bundle exec cucumber
+script: bundle exec rake cucumber
