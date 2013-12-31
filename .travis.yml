@@ -15,4 +15,4 @@ branches:
   only:
     - develop
 #before_install: gem install cucumber
-script: bundle exec cucumber
+script: rake cucumber
