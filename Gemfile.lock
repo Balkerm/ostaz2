@@ -152,7 +152,6 @@ DEPENDENCIES
   cucumber
   cucumber-rails
   database_cleaner
-  gherkin
   jquery-rails
   pg
   rails (= 3.2.13)
