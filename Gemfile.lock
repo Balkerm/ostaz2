@@ -149,8 +149,10 @@ PLATFORMS
 
 DEPENDENCIES
   coffee-rails (~> 3.2.1)
+  cucumber
   cucumber-rails
   database_cleaner
+  gherkin
   jquery-rails
   pg
   rails (= 3.2.13)
