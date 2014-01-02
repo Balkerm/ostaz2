@@ -34,6 +34,7 @@ class TransactionsController < ApplicationController
 
   # GET /transactions/1/edit
   def edit
+	@accounts = Account.all
     @transaction = Transaction.find(params[:id])
   end
 
