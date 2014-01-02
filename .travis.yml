@@ -15,6 +15,5 @@ branches:
   only:
     - develop
 #before_install: gem install cucumber
-script: 
-- cucumber
+script: S
 - bundle exec cucumber --trace

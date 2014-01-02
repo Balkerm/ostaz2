@@ -1,4 +1,7 @@
 Ostaz2::Application.routes.draw do
+  resources :transactions
+
+
   resources :accounts
 
 
