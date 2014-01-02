@@ -1,12 +1,16 @@
 Ostaz2::Application.routes.draw do
-  resources :transactions
+  resources :transactions,except: :destroy
 
 
-  resources :accounts
+  resources :accounts,except: :destroy
 
 
   resources :account_types
+  
+  resources :totals ,except: :destroy #only: [:index,:edit,:new]
 
+  #get 'totals/edit'
+  #get '/totals/new'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

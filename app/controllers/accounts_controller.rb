@@ -2,7 +2,7 @@ class AccountsController < ApplicationController
   # GET /accounts
   # GET /accounts.json
   def index
-    @accounts = Account.all
+    @accounts = @account = Account.where("name not like ?","total%")
 
     respond_to do |format|
       format.html # index.html.erb

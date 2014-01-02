@@ -1,0 +1,18 @@
+<h1> Main Accounts (Totals)</h1>
+<table>
+  <tr>
+    <th>Account</th>
+    <th>Balance</th>         
+  </tr>
+
+<% @accounts.each do |acc| %>
+  <tr>    
+    <td><%= acc.name %></td>
+    <td><%= acc.balance %></td>	    
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'My sub-Accounts', accounts_path %>

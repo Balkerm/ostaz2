@@ -3,4 +3,11 @@ class Transaction < ActiveRecord::Base
   belongs_to :to, :class_name => "Account"
   attr_accessible :amount, :description,:id,:from,:to
   has_many :accounts
+  
+  def validateTransaction(trans)
+	if(trans.to == trans.from)
+	else if(trans.from.balance < trans.amount)
+	else if ()
+	end
+  end
 end
