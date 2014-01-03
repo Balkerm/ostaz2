@@ -1,7 +1,7 @@
 class Account < ActiveRecord::Base
   belongs_to :AccountType
   attr_accessible :AccountType_id, :balance, :description, :name
-  
+  validates_presence_of :AccountType
   
   def self.getTotals
 		@account = Account.where("name like ?","total%")
