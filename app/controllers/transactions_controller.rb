@@ -48,9 +48,18 @@ class TransactionsController < ApplicationController
 	@transaction.description = params[:transaction][:description]
 	@transaction.to = @acc_to
 	@transaction.from = @acc_from
+	@error = Transaction.validateTransaction(@transaction) 
+	if(@error != "")
+		@accounts = @account = Account.where("name not like ?","total%")
+		respond_to do |format|
+			format.html { render action: "new" }
+			format.json { render json: @transaction.errors, status: :unprocessable_entity }
+		end
+		return
+	end
     respond_to do |format|
-      if @transaction.save
-        format.html { redirect_to @transaction, notice: 'Transaction was successfully created.' }
+      if ( Transaction.saveAndUpdateMainAccounts(@transaction))
+        format.html { redirect_to @transaction, notice: 'Transaction was successfully saved.' }
         format.json { render json: @transaction, status: :created, location: @transaction }
       else
 		@accounts = @account = Account.where("name not like ?","total%")

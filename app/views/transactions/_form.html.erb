@@ -10,6 +10,14 @@
       </ul>
     </div>
   <% end %>
+  <% if !@error.nil? && @error != "" %>
+    <div id="error_explanation">
+      <h2> error prohibited this account from being saved:</h2>
+      <ul>      
+        <li><%= @error %></li>
+      </ul>
+    </div>
+  <% end %>
 
   <div class="field">
     <%= f.label :description %><br />
@@ -17,7 +25,7 @@
   </div>
   <div class="field">
     <%= f.label :amount %><br />
-    <%= f.number_field :amount,:min => 0 %>
+    <%= f.number_field :amount,:min => 10 %>
   </div>  
   <div class="field">
 	<%= f.label :from %><br />

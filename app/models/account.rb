@@ -4,7 +4,7 @@ class Account < ActiveRecord::Base
   validates_presence_of :AccountType
   
   def self.getTotals
-		@account = Account.where("name like ?","total%")
+		@accounts = Account.where("name like ?","total%")
   end
   def self.getTotalsArr
 	@accounts =[]
@@ -69,13 +69,13 @@ class Account < ActiveRecord::Base
 	@totals = Account.totalsHash
 	@error=""
 	if(acc.AccountType.id == 1 || acc.AccountType.id == 4)
-		@total_Assets = @totals['total_Assets']
-		@total_Assets.balance = @total_Assets.balance - acc.balance 
-		if(@total_Assets.balance <0)
-			@error="There is no enough funds for the initial balance"
+		@total_Assets = @totals['total_Assets'] 
+		if((@total_Assets.balance - acc.balance ) <0)
+			@error="There is no enough funds for the initial balance, maximum allowed = " +@total_Assets.balance.to_s
 		else
 			@total_Exp = @totals['total_Expenses']
 			@total_Exp.balance = @total_Exp.balance + acc.balance
+			@total_Assets.balance = @total_Assets.balance - acc.balance
 			if(acc.save)
 				@total_Exp.save
 				@total_Assets.save
@@ -103,6 +103,50 @@ class Account < ActiveRecord::Base
 		@error="Unknown account type"
 	end		
 	@error	
+  end
+  def self.creditAssets(amount)
+	@assets = Account.find_by_name('total_Assets')
+	#@exp = Account.find_by_name('total_Expenses')
+	@assets.balance = @assets.balance - amount
+	#@exp.balance = @exp.balance + amount
+	@assets.save
+	#@exp.save
+  end
+  def self.debitAssets(amount)
+	@assets = Account.find_by_name('total_Assets')	
+	@assets.balance = @assets.balance + amount	
+	@assets.save	
+  end
+  def self.debitLiabilities(amount)
+	@lia = Account.find_by_name('total_Liabilities')	
+	@lia.balance = @lia.balance - amount	
+	@assets.save	
+  end
+  def self.creditLiabilities(amount)
+	@lia = Account.find_by_name('total_Liabilities')	
+	@lia.balance = @lia.balance + amount	
+	@lia.save	
+  end
+  def self.debitExpenses(amount)
+	@exp = Account.find_by_name('total_Expenses')	
+	@exp.balance = @exp.balance + amount	
+	@exp.save	
+  end
+  def self.creditExpenses(amount)
+	@exp = Account.find_by_name('total_Expenses')	
+	@exp.balance = @exp.balance - amount	
+	@exp.save	
+  end
+  def self.debitEquity(amount)	
+	@exp = Account.find_by_name('total_Expenses')	
+	@exp.balance = @exp.balance + amount	
+	@exp.save
+  end
+  def self.creditEquity(amount)
+	@exp = Account.find_by_name('total_Expenses')	
+	@exp.balance = @exp.balance - amount	
+	@exp.save
+	
   end
   
 end
