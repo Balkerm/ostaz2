@@ -17,7 +17,7 @@
   </div>
   <div class="field">
     <%= f.label :amount %><br />
-    <%= f.text_field :amount %>
+    <%= f.number_field :amount,:min => 0 %>
   </div>  
   <div class="field">
 	<%= f.label :from %><br />

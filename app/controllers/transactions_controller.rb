@@ -25,7 +25,7 @@ class TransactionsController < ApplicationController
   # GET /transactions/new.json
   def new
     @transaction = Transaction.new
-	@accounts = Account.all
+	@accounts = @account = Account.where("name not like ?","total%")
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @transaction }
@@ -34,7 +34,7 @@ class TransactionsController < ApplicationController
 
   # GET /transactions/1/edit
   def edit
-	@accounts = Account.all
+	@accounts = @account = Account.where("name not like ?","total%")
     @transaction = Transaction.find(params[:id])
   end
 
@@ -53,6 +53,7 @@ class TransactionsController < ApplicationController
         format.html { redirect_to @transaction, notice: 'Transaction was successfully created.' }
         format.json { render json: @transaction, status: :created, location: @transaction }
       else
+		@accounts = @account = Account.where("name not like ?","total%")
         format.html { render action: "new" }
         format.json { render json: @transaction.errors, status: :unprocessable_entity }
       end
@@ -69,6 +70,7 @@ class TransactionsController < ApplicationController
         format.html { redirect_to @transaction, notice: 'Transaction was successfully updated.' }
         format.json { head :no_content }
       else
+	    @accounts = @account = Account.where("name not like ?","total%")
         format.html { render action: "edit" }
         format.json { render json: @transaction.errors, status: :unprocessable_entity }
       end
