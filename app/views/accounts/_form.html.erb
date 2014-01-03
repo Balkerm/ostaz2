@@ -7,10 +7,18 @@
       <% @account.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
       <% end %>
+	  
       </ul>
     </div>
   <% end %>
-
+   <% if !@error.nil? && @error != "" %>
+    <div id="error_explanation">
+      <h2> error prohibited this account from being saved:</h2>
+      <ul>      
+        <li><%= @error %></li>
+      </ul>
+    </div>
+  <% end %>
   <div class="field">
     <%= f.label :name %><br />
     <%= f.text_field :name %>

@@ -36,18 +36,12 @@ class Account < ActiveRecord::Base
 	@total_balance
   end
   
-  def self.totalsHash
-	@types = AccountType.all
+  def self.totalsHash	
 	@totals=Hash.new
-	@types.each do |type|
-		@accounts = Account.find_all_by_AccountType_id(type)
-		@total_balance = 0.0
-		@accounts.each do |acc|
-			if (!acc.balance.nil?)
-				@total_balance = @total_balance + acc.balance
-			end
-		end
-		@totals[type.name] = @total_balance
+	@accounts = Account.where("name like ?","total%")
+	
+	@accounts.each do |account|		
+		@totals[account.name] = account
 	end
 	@totals	
   end
@@ -70,6 +64,45 @@ class Account < ActiveRecord::Base
 	end
 	@all
 	
+  end
+  def self.addAndUpdateTotals(acc)
+	@totals = Account.totalsHash
+	@error=""
+	if(acc.AccountType.id == 1 || acc.AccountType.id == 4)
+		@total_Assets = @totals['total_Assets']
+		@total_Assets.balance = @total_Assets.balance - acc.balance 
+		if(@total_Assets.balance <0)
+			@error="There is no enough funds for the initial balance"
+		else
+			@total_Exp = @totals['total_Expenses']
+			@total_Exp.balance = @total_Exp.balance + acc.balance
+			if(acc.save)
+				@total_Exp.save
+				@total_Assets.save
+			end
+		end
+	elsif(acc.AccountType.id == 3)
+		@total_eq = @totals['total_Equity']
+		@total_eq.balance = @total_eq.balance + acc.balance
+		@total_ass = @totals['total_Assets']
+		@total_ass.balance = @total_ass.balance + acc.balance
+		if(acc.save)
+			@total_eq.save
+			@total_ass.save
+		end
+	elsif(acc.AccountType.id == 2)
+		@total_liab = @totals['total_Liabilities']
+		@total_liab.balance = @total_liab.balance + acc.balance
+		@total_Exp = @totals['total_Expenses']
+		@total_Exp.balance = @total_Exp.balance + acc.balance
+		if(acc.save)
+				@total_Exp.save
+				@total_liab.save
+		end
+	else
+		@error="Unknown account type"
+	end		
+	@error	
   end
   
 end

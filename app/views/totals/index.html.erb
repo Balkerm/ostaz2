@@ -1,4 +1,4 @@
-<h1> Main Accounts (Totals)</h1>
+<h1> Main Accounts </h1>
 <table>
   <tr>
     <th>Account</th>
@@ -7,7 +7,7 @@
 
 <% @accounts.each do |acc| %>
   <tr>    
-    <td><%= acc.name %></td>
+    <td>Main <%= acc.AccountType.name %></td>
     <td><%= acc.balance %></td>	    
   </tr>
 <% end %>
