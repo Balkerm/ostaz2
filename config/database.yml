@@ -1,28 +1,31 @@
-# SQLite version 3.x
-#   gem install sqlite3
-#
-#   Ensure the SQLite 3 gem is defined in your Gemfile
-#   gem 'sqlite3'
-development:
+sqlite: &amp;sqlite
   adapter: sqlite3
-  database: db/development.sqlite3
-  pool: 5
-  timeout: 5000
+  database: db/&lt;%= Rails.env %&gt;.sqlite3
 
-# Warning: The database defined as "test" will be erased and
-# re-generated from your development database when you run "rake".
-# Do not set this db to the same as development or production.
-test: &test
-  adapter: sqlite3
-  database: db/test.sqlite3
+mysql: &amp;mysql
+  adapter: mysql2
+  username: root
+  password:
+  database: myapp_&lt;%= Rails.env %&gt;
+
+postgresql: &amp;postgresql
+  adapter: postgresql
+  username: postgres
+  password:
+  database: myapp_&lt;%= Rails.env %&gt;
+  min_messages: ERROR
+
+defaults: &amp;defaults
   pool: 5
   timeout: 5000
+  host: localhost
+  &lt;&lt;: *&lt;%= ENV['DB'] || "postgresql" %&gt;
+
+development:
+  &lt;&lt;: *defaults
+
+test:
+  &lt;&lt;: *defaults
 
 production:
-  adapter: sqlite3
-  database: db/production.sqlite3
-  pool: 5
-  timeout: 5000
-
-cucumber:
-  <<: *test
+  &lt;&lt;: *defaults

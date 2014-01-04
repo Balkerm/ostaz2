@@ -1,11 +1,17 @@
 language: ruby
-rvm:
-  #- "1.8.7"
-  #- "1.9.2"
-  - "1.9.3"
-  #- jruby-18mode # JRuby in 1.8 mode
-  - jruby-19mode # JRuby in 1.9 mode
-  - rbx
+rvm:  
+  - "1.9.3"  
+  #- jruby-19mode # JRuby in 1.9 mode
+  #- rbx
+  
+env:
+  - DB=sqlite
+  - DB=postgresql
+script:
+  - RAILS_ENV=test bundle exec rake --trace db:migrate test
+before_script:
+  - mysql -e 'create database ostaz_test'
+  - psql -c 'create database ostaz_test' -U postgres
 # uncomment this line if your project needs to run something other than `rake`:
 # script: bundle exec rspec spec
 notifications:
@@ -14,8 +20,8 @@ notifications:
 branches:
   only:
    - develop
-before_script:
-  - bundle exec rake db:migrate db:test:prepare
+#before_script:
+ # - bundle exec rake db:migrate db:test:prepare
 #before_install: gem install cucumber
-script: 
-  - bundle exec cucumber --trace
+#script: 
+ # - bundle exec cucumber --trace
