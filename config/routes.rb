@@ -1,9 +1,16 @@
 Ostaz2::Application.routes.draw do
-  resources :accounts
+  resources :transactions,except: [:destroy,:edit]
+
+
+  resources :accounts,except: :destroy
 
 
   resources :account_types
+  
+  resources :totals ,except: :destroy #only: [:index,:edit,:new]
 
+  #get 'totals/edit'
+  #get '/totals/new'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
@@ -54,7 +61,7 @@ Ostaz2::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  # root :to => 'welcome#index'
+  root :to => 'accounts#index'
 
   # See how all your routes lay out with "rake routes"
 

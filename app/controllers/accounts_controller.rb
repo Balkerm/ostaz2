@@ -2,7 +2,7 @@ class AccountsController < ApplicationController
   # GET /accounts
   # GET /accounts.json
   def index
-    @accounts = Account.all
+    @accounts = @account = Account.where("name not like ?","total%")
 
     respond_to do |format|
       format.html # index.html.erb
@@ -42,12 +42,13 @@ class AccountsController < ApplicationController
   # POST /accounts.json
   def create
     @account = Account.new(params[:account])
-
+	@error = Account.addAndUpdateTotals(@account) 	
     respond_to do |format|
-      if @account.save
+      if(@error=="" && @account.errors.empty?) #@account.save
         format.html { redirect_to @account, notice: 'Account was successfully created.' }
         format.json { render json: @account, status: :created, location: @account }
       else
+		@accountTypes = AccountType.find(:all)
         format.html { render action: "new" }
         format.json { render json: @account.errors, status: :unprocessable_entity }
       end
@@ -64,6 +65,7 @@ class AccountsController < ApplicationController
         format.html { redirect_to @account, notice: 'Account was successfully updated.' }
         format.json { head :no_content }
       else
+		@accountTypes = AccountType.find(:all)
         format.html { render action: "edit" }
         format.json { render json: @account.errors, status: :unprocessable_entity }
       end

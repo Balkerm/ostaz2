@@ -1,0 +1,8 @@
+<h1> Main Accounts (totals) </h1>
+
+
+<%= form_tag "/totals/" , method: :post do %>	
+  <h4>Please set your project initial Capital to start your main accounts </h4>
+  <%= text_field_tag "amount", "0.0" %>
+  <%= submit_tag "Save" %>
+<% end %>
