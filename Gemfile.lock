@@ -150,7 +150,6 @@ PLATFORMS
   x86-mingw32
 
 DEPENDENCIES
-  capybara
   coffee-rails (~> 3.2.1)
   cucumber-rails
   cucumber-rails-training-wheels

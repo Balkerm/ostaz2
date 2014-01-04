@@ -14,7 +14,7 @@ group :test do
 	gem 'simplecov', :require => false
 	gem 'cucumber-rails', :require => false
 	gem 'cucumber-rails-training-wheels'
-	gem 'capybara'
+	#gem 'capybara'
     # database_cleaner is not required, but highly recommended
     gem 'database_cleaner'
 	gem 'rake'
