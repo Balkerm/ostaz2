@@ -7,17 +7,16 @@ gem 'rails', '3.2.13'
 
 group :development do 
 	gem 'sqlite3'
-	gem 'rspec-rails'	
+	gem 'rspec-rails'
 end
 group :test do
 	gem 'rspec-rails'
 	gem 'simplecov', :require => false
-	gem 'cucumber'
-	#gem 'gherkin' #, '2.1.4'
-	gem 'cucumber-rails', :require => false
+	gem 'cucumber-rails'
+	gem 'cucumber-rails-training-wheels'
+	gem 'capybara'
     # database_cleaner is not required, but highly recommended
-    gem 'database_cleaner'
-	#gem 'rake'
+    gem 'database_cleaner'	
 end
 
 
