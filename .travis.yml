@@ -13,7 +13,9 @@ notifications:
     - eng.balkerm@gmail.com
 branches:
   only:
-    - develop
+   - develop
+before_script:
+  - bundle exec rake db:migrate db:test:prepare
 #before_install: gem install cucumber
 script: 
-- bundle exec cucumber --trace
+  - bundle exec cucumber --trace

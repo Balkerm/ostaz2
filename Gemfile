@@ -16,7 +16,8 @@ group :test do
 	gem 'cucumber-rails-training-wheels'
 	gem 'capybara'
     # database_cleaner is not required, but highly recommended
-    gem 'database_cleaner'	
+    gem 'database_cleaner'
+	gem 'rake'
 end
 
 
