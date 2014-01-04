@@ -6,7 +6,7 @@ env:
   - DB=sqlite
   
 before_script:  
-  - gem install activerecord-sqlite3-adapter  
+  - gem install activerecord-jdbcsqlite3-adapter  
   - bundle exec rake --trace db:test:prepare
 script:
   - bundle exec cucumber --trace  
