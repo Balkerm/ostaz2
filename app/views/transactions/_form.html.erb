@@ -29,11 +29,11 @@
   </div>  
   <div class="field">
 	<%= f.label :from %><br />
-	<%= f.collection_select :from, @accounts, :id, :name, :prompt => "Please select ...."%>
+	<%= f.collection_select :from, @accounts, :id, :name, {:prompt => "Please select ...."},{:class =>'accounts_select',:onchange=> "getAccountBalance(this.value,null)"} %>
   </div>
   <div class="field">
 	<%= f.label :to %><br />
-	<%= f.collection_select :to, @accounts, :id, :name, :prompt => "Please select ...." %>
+	<%= f.collection_select :to, @accounts, :id, :name, {:prompt => "Please select ...."},{:class =>'accounts_select'} %>
   </div>
   <div class="actions">
     <%= f.submit %>

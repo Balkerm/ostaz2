@@ -1,5 +1,5 @@
 Ostaz2::Application.routes.draw do
-  resources :transactions,except: :destroy
+  resources :transactions,except: [:destroy,:edit]
 
 
   resources :accounts,except: :destroy
