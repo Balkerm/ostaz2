@@ -1,17 +1,14 @@
 language: ruby
 rvm:  
   - "1.9.3"  
-  #- jruby-19mode # JRuby in 1.9 mode
-  #- rbx
   
 env:
   - DB=sqlite
-  #- DB=postgresql
   
-before_script:  
-  #- psql -c 'create database ostaz_test' -U postgres
+before_script:    
+  - bundle exec rake --trace db:test:prepare
 script:
-  - RAILS_ENV=test bundle exec rake --trace db:test:prepare
+  - bundle exec cucumber --trace  
 
 # uncomment this line if your project needs to run something other than `rake`:
 # script: bundle exec rspec spec
