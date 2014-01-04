@@ -6,13 +6,13 @@ mysql: &amp;mysql
   adapter: mysql2
   username: root
   password:
-  database: myapp_&lt;%= Rails.env %&gt;
+  database: ostaz_&lt;%= Rails.env %&gt;
 
 postgresql: &amp;postgresql
   adapter: postgresql
   username: postgres
   password:
-  database: myapp_&lt;%= Rails.env %&gt;
+  database: ostaz_&lt;%= Rails.env %&gt;
   min_messages: ERROR
 
 defaults: &amp;defaults
