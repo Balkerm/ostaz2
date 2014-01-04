@@ -1,5 +1,4 @@
 
-
 And /the following accounts exist/ do |accounts_table|
   accounts_table.hashes.each do |account|
   Account.create(:name=> account[:name],:balance => account[:balance],:AccountType_id=> account[:AccountType_id])

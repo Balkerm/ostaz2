@@ -13,11 +13,13 @@ module NavigationHelpers
   def path_to(page_name)
     case page_name
 	when /^the list accounts page$/ then '/accounts'
-    when /^the (RottenPotatoes )?home\s?page$/ then '/movies'
-    when /^the movies page$/ then '/movies'
 	when /^the New Account page$/ then '/accounts/new'
 	when /^the show account page for "(.*)"$/
     account_path(Account.find_by_name($1))
+	when /^the list transactions page$/ then transactions_path
+	when /^the New Transaction page$/ then new_transaction_path
+	when /^the show transaction page for "(.*)"$/
+    transaction_path(Transaction.find_by_name($1))    	
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
     #
