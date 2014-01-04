@@ -5,7 +5,8 @@ rvm:
 env:
   - DB=sqlite
   
-before_script:    
+before_script:  
+  - gem install activerecord-sqlite3-adapter  
   - bundle exec rake --trace db:test:prepare
 script:
   - bundle exec cucumber --trace  
