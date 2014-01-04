@@ -6,12 +6,12 @@ rvm:
   
 env:
   - DB=sqlite
-  - DB=postgresql
+  #- DB=postgresql
   
 before_script:  
-  - psql -c 'create database ostaz_test' -U postgres
+  #- psql -c 'create database ostaz_test' -U postgres
 script:
-  - RAILS_ENV=test bundle exec rake --trace db:migrate test
+  - RAILS_ENV=test bundle exec rake --trace db:test:prepare
 
 # uncomment this line if your project needs to run something other than `rake`:
 # script: bundle exec rspec spec
