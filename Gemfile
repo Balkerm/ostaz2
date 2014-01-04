@@ -10,6 +10,7 @@ group :development do
 	gem 'rspec-rails'
 end
 group :test do
+    gem 'sqlite3'
 	gem 'rspec-rails'
 	gem 'simplecov', :require => false
 	gem 'cucumber-rails', :require => false
