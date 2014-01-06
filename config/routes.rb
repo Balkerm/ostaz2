@@ -1,4 +1,14 @@
 Ostaz2::Application.routes.draw do
+  
+  authenticated :user do
+    root :to => 'accounts#index'
+  end
+  root :to => "home#index"
+  #root :to => 'accounts#index'
+  get "home/index"
+   
+  devise_for :users
+
   resources :transactions,except: [:destroy,:edit]
 
 
@@ -61,7 +71,7 @@ Ostaz2::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  root :to => 'accounts#index'
+  
 
   # See how all your routes lay out with "rake routes"
 
