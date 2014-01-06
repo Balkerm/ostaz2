@@ -1,6 +1,7 @@
 class AccountsController < ApplicationController
   # GET /accounts
   # GET /accounts.json
+  before_filter :authenticate_user!
   def index
     @accounts = @account = Account.where("name not like ?","total%")
 

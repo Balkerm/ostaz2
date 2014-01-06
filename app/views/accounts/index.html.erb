@@ -1,7 +1,6 @@
 <h1>Accounts</h1>
-
-<%= link_to 'New Account', new_account_path %>
-<table id="accounts">
+<div class="span8">
+<table id="accounts" class="table table-condensed">
   <tr>
     <th>Name</th>   
     <th>Balance</th>
@@ -23,6 +22,6 @@
 
 <br />
 
-<%= link_to 'Transactions', transactions_path %>
-<br />
+<%= link_to 'New Account', new_account_path %>|
 <%= link_to 'View Main Accounts', totals_path %>
+</div>

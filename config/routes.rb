@@ -1,14 +1,13 @@
 Ostaz2::Application.routes.draw do
   
   authenticated :user do
-    root :to => 'accounts#index'
+    root :to => 'home#index'
   end
   root :to => "home#index"
   #root :to => 'accounts#index'
-  get "home/index"
    
-  devise_for :users
-
+  devise_for :users, :controllers => {:registrations => "users/registrations"}
+  resources :users
   resources :transactions,except: [:destroy,:edit]
 
 
@@ -17,7 +16,7 @@ Ostaz2::Application.routes.draw do
 
   resources :account_types
   
-  resources :totals ,except: :destroy #only: [:index,:edit,:new]
+  resources :totals , only: [:index,:create,:new]#except: :destroy
 
   #get 'totals/edit'
   #get '/totals/new'

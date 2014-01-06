@@ -1,4 +1,5 @@
 class TotalsController < ApplicationController
+before_filter :authenticate_user!
 	def index
 	@accounts = Account.getTotals
 	#@assets = Account.getTotalAssets

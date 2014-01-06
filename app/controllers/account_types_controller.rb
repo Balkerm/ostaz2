@@ -1,6 +1,7 @@
 class AccountTypesController < ApplicationController
   # GET /account_types
   # GET /account_types.json
+  before_filter :authenticate_user!
   def index
     @account_types = AccountType.all
 
