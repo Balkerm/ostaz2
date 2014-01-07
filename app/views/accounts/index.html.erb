@@ -17,7 +17,9 @@
     <td><%= account.AccountType.name%></td>
 	<td><%= account.user.name%></td>
     <td><%= link_to 'Show', account %></td>
-    <td><%= link_to 'Edit', edit_account_path(account) %></td>    
+	<% if can? :update, Account %>
+	<td><%= link_to 'Edit', edit_account_path(account) %></td> 	
+	<% end %>
   </tr>
 <% end %>
 </table>

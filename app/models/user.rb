@@ -16,6 +16,6 @@ class User < ActiveRecord::Base
   after_create :default_role
   private
   def default_role
-    self.roles << Role.where(:name => 'User').first
+    self.roles << Role.where(:name => 'Accountant').first
   end
 end

@@ -2,7 +2,7 @@ class TotalsController < ApplicationController
 before_filter :authenticate_user!
 before_filter(:only => [:index, :show,:create]) { authorize!  :read, :totals }
 	def index
-	@accounts = Account.getTotals
+	@accounts = Account.where("name like ?","total%").accessible_by(current_ability)
 	#@assets = Account.getTotalAssets
 	#@totalsHash = Account.totalsHash
 	end

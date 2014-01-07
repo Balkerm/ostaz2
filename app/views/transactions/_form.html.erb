@@ -23,18 +23,20 @@
     <%= f.label :description %><br />
     <%= f.text_field :description %>
   </div>
+  <% if( @transaction.new_record?) %>
   <div class="field">
     <%= f.label :amount %><br />
     <%= f.number_field :amount,:min => 10 %>
   </div>  
   <div class="field">
 	<%= f.label :from %><br />
-	<%= f.collection_select :from, @accounts, :id, :name, {:prompt => "Please select ...."},{:class =>'accounts_select',:onchange=> "getAccountBalance(this.value,null)"} %>
+	<%= f.collection_select :from_id, @accounts, :id, :name, {:prompt => "Please select ...."},{:class =>'accounts_select',:onchange=> "getAccountBalance(this.value,null)"} %>
   </div>
   <div class="field">
 	<%= f.label :to %><br />
-	<%= f.collection_select :to, @accounts, :id, :name, {:prompt => "Please select ...."},{:class =>'accounts_select'} %>
+	<%= f.collection_select :to_id, @accounts, :id, :name, {:prompt => "Please select ...."},{:class =>'accounts_select'} %>
   </div>
+  <% end%>
   <div class="actions">
     <%= f.submit %>
   </div>

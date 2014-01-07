@@ -2,9 +2,9 @@ class TransactionsController < ApplicationController
   # GET /transactions
   # GET /transactions.json
   before_filter :authenticate_user!
-  load_and_authorize_resource
+  load_and_authorize_resource  
   def index
-    @transactions = Transaction.all
+    @transactions = Transaction.accessible_by(current_ability)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -27,7 +27,7 @@ class TransactionsController < ApplicationController
   # GET /transactions/new.json
   def new
     @transaction = Transaction.new
-	@accounts = @account = Account.where("name not like ?","total%")
+	@accounts = @account = Account.where("name not like ?","total%").accessible_by(current_ability)
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @transaction }
@@ -36,7 +36,7 @@ class TransactionsController < ApplicationController
 
   # GET /transactions/1/edit
   def edit
-	@accounts = @account = Account.where("name not like ?","total%")
+	@accounts = @account = Account.where("name not like ?","total%").accessible_by(current_ability)
     @transaction = Transaction.find(params[:id])
   end
 
@@ -44,27 +44,28 @@ class TransactionsController < ApplicationController
   # POST /transactions.json
   def create
 	@transaction = Transaction.new
-	@acc_from = Account.find_by_id(params[:transaction][:from])
-	@acc_to = Account.find_by_id(params[:transaction][:to])	
+	@acc_from = Account.find_by_id(params[:transaction][:from_id])
+	@acc_to = Account.find_by_id(params[:transaction][:to_id])	
     @transaction.amount = params[:transaction][:amount]
 	@transaction.description = params[:transaction][:description]
 	@transaction.to = @acc_to
 	@transaction.from = @acc_from
 	@error = Transaction.validateTransaction(@transaction) 
 	if(@error != "")
-		@accounts = @account = Account.where("name not like ?","total%")
+		@accounts = @account = Account.where("name not like ?","total%").accessible_by(current_ability)
 		respond_to do |format|
 			format.html { render action: "new" }
 			format.json { render json: @transaction.errors, status: :unprocessable_entity }
 		end
 		return
 	end
+	@result = Transaction.saveAndUpdateMainAccounts(@transaction)
     respond_to do |format|
-      if ( Transaction.saveAndUpdateMainAccounts(@transaction))
+      if ( @result)
         format.html { redirect_to @transaction, notice: 'Transaction was successfully saved.' }
         format.json { render json: @transaction, status: :created, location: @transaction }
       else
-		@accounts = @account = Account.where("name not like ?","total%")
+		@accounts = @account = Account.where("name not like ?","total%").accessible_by(current_ability)
         format.html { render action: "new" }
         format.json { render json: @transaction.errors, status: :unprocessable_entity }
       end
@@ -81,7 +82,7 @@ class TransactionsController < ApplicationController
         format.html { redirect_to @transaction, notice: 'Transaction was successfully updated.' }
         format.json { head :no_content }
       else
-	    @accounts = @account = Account.where("name not like ?","total%")
+	    @accounts = @account = Account.where("name not like ?","total%").accessible_by(current_ability)
         format.html { render action: "edit" }
         format.json { render json: @transaction.errors, status: :unprocessable_entity }
       end

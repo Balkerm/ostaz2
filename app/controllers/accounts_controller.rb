@@ -4,7 +4,7 @@ class AccountsController < ApplicationController
   before_filter :authenticate_user!
   load_and_authorize_resource
   def index
-    @account = Account.where("name not like ?","total%")
+    @accounts = Account.where("name not like ?","total%").accessible_by(current_ability)
 	#@account = Account.accessible_by(current_ability)
     respond_to do |format|
       format.html # index.html.erb

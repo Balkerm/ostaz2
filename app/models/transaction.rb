@@ -1,7 +1,7 @@
 class Transaction < ActiveRecord::Base
   belongs_to :from, :class_name => "Account"
   belongs_to :to, :class_name => "Account"
-  attr_accessible :amount, :description,:id,:from,:to
+  attr_accessible :amount, :description,:id,:from_id,:to_id
   has_many :accounts
   validates_presence_of :from
   validates_presence_of :to
@@ -19,15 +19,18 @@ class Transaction < ActiveRecord::Base
 	@error
   end
   def self.saveAndUpdateMainAccounts(transaction)
-	if(transaction.save)
+	@result = transaction.save
+	if(@result)
+		transaction.from.balance = transaction.from.balance-transaction.amount
+		transaction.to.balance = transaction.to.balance+transaction.amount
+		transaction.to.save
+		transaction.from.save
 		if(transaction.from.AccountType != transaction.to.AccountType)		
 			handelFrom(transaction.from.AccountType,transaction.amount)
-			handleTo(transaction.to.AccountType,transaction.amount)
-			return true
+			handleTo(transaction.to.AccountType,transaction.amount)			
 		end
-	else
-		return false
 	end
+	return @result	
   end
   
   def self.handelFrom(type,amount)
