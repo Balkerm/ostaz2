@@ -23,15 +23,20 @@ puts 'Roles [Owner , Accountant	,DataEntry] created.'
 		   
 puts 'SETTING UP DEFAULT USERS LOGIN'
 User.delete_all
-user = User.create! :name => 'Basma Alkerm', :email => 'basma@gmail.com', :password => '12345678', :password_confirmation => '12345678'
-#user2 = User.create! :name => 'Accountant User', :email => 'user1@gmail.com', :password => 'password', :password_confirmation => 'password'
-user3 = User.create! :name => 'Data Entry User', :email => 'user2@gmail.com', :password => 'password', :password_confirmation => 'password'
+user  = User.create! :name => 'Sameh El-Ansary', :email => 'sameh@gmail.com', :password => 'password', :password_confirmation => 'password'
+user2 = User.create! :name => 'Basma Alkerm', :email => 'basma@gmail.com', :password => 'password', :password_confirmation => 'password'
+user3 = User.create! :name => 'Sara Alkerm', :email => 'sara@gmail.com', :password => 'password', :password_confirmation => 'password'
 
 user.add_role  :Owner
-#user2.add_role :Accountant
+user2.add_role :Accountant
 user3.add_role :DataEntry
 
 puts 'New user created: ' << user.name << ' role : Owner'
-#puts 'New user created: ' << user2.name << ' role : Accountant'
+puts 'New user created: ' << user2.name << ' role : Accountant'
 puts 'New user created: ' << user3.name << ' role : DataEntry'
+
+puts 'SETTING UP Main accounts for Accountant user '
+puts 'Initial Equity == 20000'
+Account.createTotals(20000,user2)
+
 
