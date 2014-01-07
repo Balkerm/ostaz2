@@ -1,9 +1,11 @@
 class AccountsController < ApplicationController
   # GET /accounts
   # GET /accounts.json
+  before_filter :authenticate_user!
+  load_and_authorize_resource
   def index
-    @accounts = @account = Account.where("name not like ?","total%")
-
+    @accounts = Account.where("name not like ?","total%").accessible_by(current_ability)
+	#@account = Account.accessible_by(current_ability)
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @accounts }
@@ -13,6 +15,7 @@ class AccountsController < ApplicationController
   # GET /accounts/1
   # GET /accounts/1.json
   def show
+    params[:user_id] = current_user.id
     @account = Account.find(params[:id])
 
     respond_to do |format|
@@ -42,6 +45,7 @@ class AccountsController < ApplicationController
   # POST /accounts.json
   def create
     @account = Account.new(params[:account])
+	@account.user = User.find_by_id(current_user.id)#current_user.id
 	@error = Account.addAndUpdateTotals(@account) 	
     respond_to do |format|
       if(@error=="" && @account.errors.empty?) #@account.save

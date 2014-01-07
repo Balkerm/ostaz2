@@ -1,18 +1,21 @@
 <h1> Main Accounts </h1>
-<table>
+<div class="span8">
+<table class="table table-condensed">
   <tr>
     <th>Account</th>
-    <th>Balance</th>         
+    <th>Balance</th>
+	<th>User</th>	
   </tr>
 
 <% @accounts.each do |acc| %>
   <tr>    
     <td>Main <%= acc.AccountType.name %></td>
-    <td><%= acc.balance %></td>	    
+    <td><%= acc.balance %></td>	
+	<td><%= acc.user.name %></td>	    
   </tr>
 <% end %>
 </table>
 
-<br />
 
-<%= link_to 'My sub-Accounts', accounts_path %>
+<%= link_to 'Sub Accounts', accounts_path %>
+</div>

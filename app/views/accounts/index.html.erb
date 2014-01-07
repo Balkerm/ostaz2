@@ -1,11 +1,11 @@
 <h1>Accounts</h1>
-
-<%= link_to 'New Account', new_account_path %>
-<table id="accounts">
+<div class="span8">
+<table id="accounts" class="table table-condensed">
   <tr>
     <th>Name</th>   
     <th>Balance</th>
     <th>Accounttype</th>
+	<th>user</th>
     <th></th>
     <th></th>
   </tr>
@@ -15,14 +15,17 @@
     <td><%= account.name %></td>    
     <td><%= account.balance %></td>
     <td><%= account.AccountType.name%></td>
+	<td><%= account.user.name%></td>
     <td><%= link_to 'Show', account %></td>
-    <td><%= link_to 'Edit', edit_account_path(account) %></td>    
+	<% if can? :update, Account %>
+	<td><%= link_to 'Edit', edit_account_path(account) %></td> 	
+	<% end %>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'Transactions', transactions_path %>
-<br />
+<%= link_to 'New Account', new_account_path %>|
 <%= link_to 'View Main Accounts', totals_path %>
+</div>
