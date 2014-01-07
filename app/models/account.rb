@@ -1,6 +1,7 @@
 class Account < ActiveRecord::Base
   belongs_to :AccountType
-  attr_accessible :AccountType_id, :balance, :description, :name
+  belongs_to :user ,:class_name => "User"
+  attr_accessible :AccountType_id, :balance, :description, :name, :user
   validates_presence_of :AccountType
   
   def self.getTotals
@@ -45,15 +46,16 @@ class Account < ActiveRecord::Base
 	end
 	@totals	
   end
-  def self.createTotals(amount)	
+  def self.createTotals(amount,current_user)	
 	#Account.where(Account.arel_table[:name].matches('%total')).destroy_all
 	@types = AccountType.all
 	@all=[]
 	@types.each do |type|
 		@account = Account.new
 		@account.name = "total_"+type.name
-		@account.description = "The sum of all current "+type.name+"s."
+		@account.description = "The sum of all "+type.name+"accounts."
 		@account.AccountType = type
+		@account.user = User.find_by_id(current_user.id) 
 		if(type.name == "Assets" || type.name == "Equity")
 			@account.balance = amount
 		else

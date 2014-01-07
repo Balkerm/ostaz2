@@ -3,12 +3,20 @@ class Ability
 
   def initialize(user)
 	user ||= User.new # guest user (not logged in)
-    if user.has_role? :Owner
-      can :read, :all 
+    if user.has_role? :Owner	
+      can [:read,:update], User
+	  can :read,:all
 	elsif user.has_role? :Accountant
-		can :manage, :all
+		can :manage, [Account,Transaction,:totals]
+		can :read,User
 	elsif user.has_role? :DataEntry
 		can :manage, Account , :AccountType_id => 4
+		can :manage, Transaction,:from.AccountType_id =>4,:to.AccountType_id =>4
+	elsif user.has_role? :User
+		can :create,[Account,Transaction]
+		can [:read,:update], Account,:user_id => user.id
+		can :read,:totals
+		#can [:read], Transaction,:user_id =>current_user.id
     end
     # Define abilities for the passed in user here. For example:
     #

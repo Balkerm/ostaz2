@@ -16,9 +16,10 @@ AccountType.create!(id: 4,name: 'Expenses',description: 'Expenses')
 puts 'CREATING ROLES'
 Role.delete_all
 Role.create([
-  { :name => 'Accountant' }, 
   { :name => 'Owner' }, 
-  { :name => 'DataEntry' }
+  { :name => 'Accountant' }, 
+  { :name => 'DataEntry'},
+  { :name => 'User'}
            ], :without_protection => true)
 		   
 		   
@@ -33,6 +34,6 @@ puts 'New user created: ' << user2.name
 user3 = User.create! :name => 'Data Entry User', :email => 'dataEntry@gmail.com', :password => 'password', :password_confirmation => 'password'
 puts 'New user created: ' << user3.name
 
-user.add_role :Owner
+user.add_role  :Owner
 user2.add_role :Accountant
 user3.add_role :DataEntry

@@ -2,6 +2,7 @@ class TransactionsController < ApplicationController
   # GET /transactions
   # GET /transactions.json
   before_filter :authenticate_user!
+  load_and_authorize_resource
   def index
     @transactions = Transaction.all
 

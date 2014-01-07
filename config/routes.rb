@@ -8,14 +8,10 @@ Ostaz2::Application.routes.draw do
    
   devise_for :users, :controllers => {:registrations => "users/registrations"}
   resources :users
-  resources :transactions,except: [:destroy,:edit]
-
-
-  resources :accounts,except: :destroy
-
-
-  resources :account_types
   
+  resources :transactions,except: [:destroy,:edit]
+  resources :accounts,except: :destroy
+  resources :account_types
   resources :totals , only: [:index,:create,:new]#except: :destroy
 
   #get 'totals/edit'
