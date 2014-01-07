@@ -9,8 +9,8 @@ before_script:
   - gem install sqlite3  
   - bundle exec rake --trace db:migrate
   - bundle exec rake --trace db:test:prepare
-script:
-  - bundle exec rake cucumber --trace  
+#script:
+ # - bundle exec rake cucumber --trace  
 
 # uncomment this line if your project needs to run something other than `rake`:
 # script: bundle exec rspec spec
