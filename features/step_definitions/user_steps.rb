@@ -3,8 +3,8 @@
 def create_visitor
   @visitor ||= {:id => 10, :name => "Testy McUserton", :email => "example@example.com",
     :password => "changeme", :password_confirmation => "changeme" }
-  #@visitor.add_role :Accountant
 end
+
 
 def find_user
   @user ||= User.first conditions: {:email => @visitor[:email]}
@@ -20,13 +20,20 @@ end
 def create_user
   create_visitor
   delete_user
-  @user = FactoryGirl.create(:user, email: @visitor[:email])
+  @user = FactoryGirl.create(:accountant, email: @visitor[:email])
+end
+
+def create_owner
+  create_visitor
+  delete_user
+  @user = FactoryGirl.create(:owner)
 end
 
 def delete_user
   @user ||= User.first conditions: {:email => @visitor[:email]}
   @user.destroy unless @user.nil?
 end
+
 
 def sign_up
   delete_user
@@ -56,9 +63,15 @@ Given /^I am logged in$/ do
   sign_in
 end
 
+Given /^I am logged in as owner$/ do
+  create_owner
+  sign_in
+end
+
 Given /^I exist as a user$/ do
   create_user
 end
+
 
 Given /^I do not exist as a user$/ do
   create_visitor
@@ -130,7 +143,7 @@ When /^I edit my account details$/ do
 end
 
 When /^I look at the list of users$/ do
-  visit '/'
+  visit users_path
 end
 
 ### THEN ###

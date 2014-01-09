@@ -5,6 +5,13 @@ FactoryGirl.define do
     email 'example@example.com'
     password 'changeme'
     password_confirmation 'changeme' 
-	roles [FactoryGirl.create(:role)]
+  end
+  
+  factory :accountant, parent: :user do
+	roles [FactoryGirl.create(:role_accountant)]
+  end
+  
+  factory :owner, parent: :user do
+	roles [FactoryGirl.create(:role_owner)]
   end
 end
