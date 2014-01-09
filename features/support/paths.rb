@@ -1,8 +1,3 @@
-# TL;DR: YOU SHOULD DELETE THIS FILE
-#
-# This file is used by web_steps.rb, which you should also delete
-#
-# You have been warned
 module NavigationHelpers
   # Maps a name to a path. Used by the
   #
@@ -12,14 +7,16 @@ module NavigationHelpers
   #
   def path_to(page_name)
     case page_name
-	when /^the list accounts page$/ then '/accounts'
-	when /^the New Account page$/ then '/accounts/new'
-	when /^the show account page for "(.*)"$/
-    account_path(Account.find_by_name($1))
-	when /^the list transactions page$/ then transactions_path
-	when /^the New Transaction page$/ then new_transaction_path
-	when /^the show transaction page for "(.*)"$/
-    transaction_path(Transaction.find_by_name($1))    	
+
+    when /the home\s?page/
+      '/'
+
+    when /the sign up page/
+      '/users/sign_up'
+
+    when /the sign in page/
+      '/users/sign_in'
+
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
     #
@@ -28,10 +25,10 @@ module NavigationHelpers
 
     else
       begin
-        page_name =~ /^the (.*) page$/
+        page_name =~ /the (.*) page/
         path_components = $1.split(/\s+/)
         self.send(path_components.push('path').join('_').to_sym)
-      rescue NoMethodError, ArgumentError
+      rescue Object => e
         raise "Can't find mapping from \"#{page_name}\" to a path.\n" +
           "Now, go and add a mapping in #{__FILE__}"
       end
