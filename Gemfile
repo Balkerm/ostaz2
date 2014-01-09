@@ -1,21 +1,24 @@
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.13'
+gem 'bootstrap-sass'
+gem "devise", ">= 2.1.2"
+gem "cancan", ">= 1.6.8"
+gem "rolify", ">= 3.2.0"
+gem "simple_form", ">= 2.0.3"
 
-# Bundle edge Rails instead:
-# gem 'rails', :git => 'git://github.com/rails/rails.git'
-
-
-group :development do 
+group :development,:test do
 	gem 'sqlite3'
 	gem 'rspec-rails'
-	gem "quiet_assets", ">= 1.0.1"
 	gem "factory_girl_rails"
+end
+
+group :development do 	
+	gem "quiet_assets", ">= 1.0.1"
 	gem 'rails_layout'
 end
+
 group :test do
-    gem 'sqlite3'
-	gem 'rspec-rails'
 	gem 'simplecov', :require => false
 	gem 'cucumber-rails', :require => false
 	gem 'cucumber-rails-training-wheels'
@@ -23,7 +26,6 @@ group :test do
     # database_cleaner is not required, but highly recommended
     gem 'database_cleaner'
 	gem 'rake'
-	gem "factory_girl_rails"
 end
 
 
@@ -58,9 +60,4 @@ gem 'jquery-rails'
 
 # To use debugger
 # gem 'debugger'
-#gem "bootstrap-sass", ">= 2.1.0.0"
-gem 'bootstrap-sass'
-gem "devise", ">= 2.1.2"
-gem "cancan", ">= 1.6.8"
-gem "rolify", ">= 3.2.0"
-gem "simple_form", ">= 2.0.3"
+
