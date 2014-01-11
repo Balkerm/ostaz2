@@ -14,10 +14,9 @@ Given /the following account Types exist/ do |types_table|
   end
 end
 
-Given /the following accounts exist/ do |accounts_table|
+Given /I have the following accounts/ do |accounts_table|
   accounts_table.hashes.each do |account|
-  Account.create(:name=> account[:name],:balance => account[:balance],:AccountType_id=> account[:AccountType_id],
-  :user => account[:user_id])
+	create_account(account[:name],account[:balance])
   end
 end
 
