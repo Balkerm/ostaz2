@@ -5,10 +5,9 @@ rvm:
 env:
   - DB=sqlite
   
-before_script:  
-  - gem install sqlite3  
+before_script:   
   - bundle exec rake --trace db:migrate
-  - bundle exec rake --trace db:test:prepare
+  - bundle exec rake --trace db:test:clone
 #script:
  # - bundle exec rake cucumber --trace  
 
@@ -20,8 +19,5 @@ notifications:
 branches:
   only:
    - develop
-#before_script:
- # - bundle exec rake db:migrate db:test:prepare
-#before_install: gem install cucumber
 script: 
   - bundle exec cucumber --trace
