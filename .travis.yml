@@ -5,9 +5,9 @@ rvm:
 env:
   - DB=sqlite
   
-before_script:   
-  - bundle exec rake --trace db:migrate
-  - bundle exec rake --trace db:test:clone
+#before_script:   
+ # - bundle exec rake --trace db:migrate
+  #- bundle exec rake --trace db:test:clone
 #script:
  # - bundle exec rake cucumber --trace  
 
