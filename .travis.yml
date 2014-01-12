@@ -20,8 +20,8 @@ notifications:
 branches:
   only:
    - develop
-before_script:
-  - bundle exec rake db:migrate db:test:prepare
+#before_script:
+ # - bundle exec rake db:migrate db:test:prepare
 #before_install: gem install cucumber
 script: 
   - bundle exec cucumber --trace
