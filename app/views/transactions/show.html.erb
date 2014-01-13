@@ -1,37 +1,38 @@
-<p>
-  <b>Date:</b>
-  <%= @transaction.created_at %>
-</p> 
 
-<p>
-  <b>Description:</b>
-  <%= @transaction.description %>
-</p>
-
-<p>
-  <b>Amount:</b>
-  <%= @transaction.amount %>
-</p>
-
-<p>
-  <b>From:</b>
-  <%= @transaction.from.name %>
-</p>
-
-<p>
-  <b>To:</b>
-  <%= @transaction.to.name %>
-</p>
-
-<p>
-	<b>Receipt:</b>
+<table class="table table-condensed">
+<th style='width:50%'></th>
+<th style='width:50%'></th>
+<tr>
+	<td><b>Date:</b></td>
+	<td><%= @transaction.created_at %></td>
+</tr>
+<tr>
+	<td><b>Description:</b></td>
+	<td><%= @transaction.description %></td>
+</tr>
+<tr>
+	<td><b>Amount</b></td>
+	<td><%= @transaction.amount %></td>
+</tr>
+<tr>
+	<td><b>From:</b></td>
+	<td><%= @transaction.from.name %></td>
+</tr>
+<tr>
+	<td><b>To:</b></td>
+	<td><%= @transaction.to.name %></td>
+</tr>
+<tr>
+	<td><b>Receipt:</b></td>
+	<td>
 	<% if @transaction.receipt_file_name.nil? %>
 		-
 	<% else %>
 		<%=  @transaction.receipt_file_name %>
-        <a data-toggle="modal" href="#receipt-<%= @transaction.id%>" class="btn btn-mini" type="button">view</a>
+        <a data-toggle="modal" href="#receipt-<%= @transaction.id%>"  type="button">view</a>
         <%= render 'receipt' %>
 	<% end %>
-</p>
-
+	</td>
+</tr>
+</table>
 <%= link_to 'Back', transactions_path %>
