@@ -53,6 +53,11 @@ def sign_in
   click_button "Sign in"
 end
 
+def create_basic_roles
+	FactoryGirl.create(:role_accountant)
+	FactoryGirl.create(:role_owner)
+end
+
 ### GIVEN ###
 Given /^I am not logged in$/ do
   visit '/users/sign_out'
@@ -81,7 +86,9 @@ end
 Given /^I exist as an unconfirmed user$/ do
   create_unconfirmed_user
 end
-
+Given /^the basic roles are defined$/ do
+	create_basic_roles
+end
 ### WHEN ###
 When /^I sign in with valid credentials$/ do
   create_visitor

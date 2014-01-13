@@ -5,6 +5,7 @@ Feature: Sign up
 
     Background:
       Given I am not logged in
+	  And the basic roles are defined
 
     Scenario: User signs up with valid data
       When I sign up with valid user data

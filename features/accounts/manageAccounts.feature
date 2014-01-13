@@ -3,6 +3,7 @@ Feature: Manage Accounts
   As a user
   I want to create 'and' manage accounts
 
+
 Scenario: Successfully Add account
 	Given I am logged in as accountant
 	And I have main accounts with initial eqity "15000"	

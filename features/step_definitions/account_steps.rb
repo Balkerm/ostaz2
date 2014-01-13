@@ -50,8 +50,8 @@ end
 #end
 
 def create_main_accounts(amount)
-	#@user = FactoryGirl.create(:accountant)
-	@main_assets = FactoryGirl.create(:account_main_assets, :balance => amount,:user =>@user)
+	#@user = FactoryGirl.create(:accountant)	
+	@main_assets = FactoryGirl.create(:account_main_assets, :balance => amount,:user =>@user)	
 	#@main_assets.user = @user
 	@main_liabilities = FactoryGirl.create(:account_main_liabilities,:balance => "0",:user =>@user)
 	#@main_liabilities.user = @user

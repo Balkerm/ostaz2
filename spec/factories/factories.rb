@@ -12,20 +12,24 @@ FactoryGirl.define do
 ################################################################################
   factory :account_type_assets, class: AccountType do	
 	name 'Assets'
-	initialize_with { AccountType.find_or_create_by_name('Assets')}
+	id 1
+	initialize_with { AccountType.find_or_create_by_id(1)}
   end
   
   factory :account_type_liabilities, class: AccountType do
+	id 2
 	name 'Liabilities'
-	initialize_with { AccountType.find_or_create_by_name('Liabilities')}
+	initialize_with { AccountType.find_or_create_by_id(2)}
   end
   factory :account_type_equity, class: AccountType do  
+	id 3
 	name 'Equity'
-	initialize_with { AccountType.find_or_create_by_name('Equity')}
+	initialize_with { AccountType.find_or_create_by_id(3)}
   end
   factory :account_type_expenses, class: AccountType do
+	id 4
 	name 'Expenses'
-	initialize_with { AccountType.find_or_create_by_name('Expenses')}
+	initialize_with { AccountType.find_or_create_by_id(4)}
   end
 #################################################################################
   factory :user , class: User do
