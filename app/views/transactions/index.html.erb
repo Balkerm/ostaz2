@@ -6,6 +6,7 @@
     <th>Amount</th>
     <th>From</th>	
     <th>To</th>
+	<th>User</th>
 	<th>Date</th>
 	<th>Receipt</th>
     <th></th>
@@ -18,6 +19,7 @@
     <td><%= transaction.amount %></td>
 	<td><%= link_to  transaction.from.name , transaction.from %></td>
 	<td><%= link_to  transaction.to.name , transaction.to %></td>
+	<td><%= transaction.from.user.name  %></td>
 	<td><%= transaction.created_at  %></td>
 	<td>
 	<% if (transaction.receipt_file_name.nil?) %>
