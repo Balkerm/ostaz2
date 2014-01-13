@@ -13,7 +13,8 @@ Ostaz2::Application.routes.draw do
   resources :accounts,except: [:destroy]
   #resources :account_types
   resources :totals , only: [:index,:create,:new]#except: :destroy
-
+  #get 'transactions/receipt/:id'
+  get ':controller(/:action(/:id))'
   #get 'totals/edit'
   #get '/totals/new'
 

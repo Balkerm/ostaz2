@@ -28,8 +28,7 @@
 	<% if @transaction.receipt_file_name.nil? %>
 		-
 	<% else %>
-		<%= @transaction.receipt_file_name%>
-		<%= image_tag @transaction.receipt.url %>
+		<%= link_to @transaction.receipt_file_name, 'receipt/'+ @transaction.id.to_s %>
 	<% end %>
 </p>
 
