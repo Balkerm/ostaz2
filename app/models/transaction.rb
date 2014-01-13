@@ -4,7 +4,7 @@ class Transaction < ActiveRecord::Base
   attr_accessible :amount, :description,:id,:from_id,:to_id,:receipt
   has_many :accounts
   
-  has_attached_file :receipt, :styles => { :medium => "300x300>", :thumb => "100x100>" }, :default_url => "/images/:style/missing.png" 
+  has_attached_file :receipt,  :default_url => "/images/:style/missing.png" 
   #:styles => { :medium => "300x300>", :thumb => "100x100>" },
   
   validates_presence_of :from
