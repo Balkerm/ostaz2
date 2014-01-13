@@ -53,7 +53,7 @@ class TransactionsController < ApplicationController
 	@transaction.receipt = params[:transaction][:receipt]
 	@error = Transaction.validateTransaction(@transaction) 
 	if(@error != "")
-		@accounts = @account = Account.where("name not like ?","total%").accessible_by(current_ability)
+		@accounts  = Account.where("name not like ?","total%").accessible_by(current_ability)
 		respond_to do |format|
 			format.html { render action: "new" }
 			format.json { render json: @transaction.errors, status: :unprocessable_entity }
@@ -66,7 +66,7 @@ class TransactionsController < ApplicationController
         format.html { redirect_to @transaction, notice: 'Transaction was successfully saved.' }
         format.json { render json: @transaction, status: :created, location: @transaction }
       else
-		@accounts = @account = Account.where("name not like ?","total%").accessible_by(current_ability)
+		@accounts  = Account.where("name not like ?","total%").accessible_by(current_ability)
         format.html { render action: "new" }
         format.json { render json: @transaction.errors, status: :unprocessable_entity }
       end
