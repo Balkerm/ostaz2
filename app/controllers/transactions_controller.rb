@@ -50,6 +50,7 @@ class TransactionsController < ApplicationController
 	@transaction.description = params[:transaction][:description]
 	@transaction.to = @acc_to
 	@transaction.from = @acc_from
+	@transaction.receipt = params[:transaction][:receipt]
 	@error = Transaction.validateTransaction(@transaction) 
 	if(@error != "")
 		@accounts = @account = Account.where("name not like ?","total%").accessible_by(current_ability)

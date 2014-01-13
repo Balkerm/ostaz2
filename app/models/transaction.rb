@@ -1,8 +1,12 @@
 class Transaction < ActiveRecord::Base
   belongs_to :from, :class_name => "Account"
   belongs_to :to, :class_name => "Account"
-  attr_accessible :amount, :description,:id,:from_id,:to_id
+  attr_accessible :amount, :description,:id,:from_id,:to_id,:receipt
   has_many :accounts
+  
+  has_attached_file :receipt, :styles => { :medium => "300x300>", :thumb => "100x100>" }, :default_url => "/images/:style/missing.png" 
+  #:styles => { :medium => "300x300>", :thumb => "100x100>" },
+  
   validates_presence_of :from
   validates_presence_of :to
   def self.validateTransaction(trans)

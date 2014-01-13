@@ -23,6 +23,8 @@
   <%= @transaction.to.name %>
 </p>
 
-
+<p>
+	<%= image_tag @transaction.receipt.url %>
+</p>
 
 <%= link_to 'Back', transactions_path %>
