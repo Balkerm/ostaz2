@@ -24,7 +24,13 @@
 </p>
 
 <p>
-	<%= image_tag @transaction.receipt.url %>
+	<b>Receipt:</b>
+	<% if @transaction.receipt_file_name.nil? %>
+		-
+	<% else %>
+		<%= @transaction.receipt_file_name%>
+		<%= image_tag @transaction.receipt.url %>
+	<% end %>
 </p>
 
 <%= link_to 'Back', transactions_path %>

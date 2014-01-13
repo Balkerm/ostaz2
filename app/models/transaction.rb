@@ -6,7 +6,10 @@ class Transaction < ActiveRecord::Base
   
   has_attached_file :receipt,  :default_url => "/images/:style/missing.png" 
   #:styles => { :medium => "300x300>", :thumb => "100x100>" },
-  
+  #:presence => true,
+  validates_attachment :receipt, 
+  :content_type => { :content_type => /(^image\/(png|gif|jpeg))|^pdf/ },
+  :size => { :in => 0..100.kilobytes }
   validates_presence_of :from
   validates_presence_of :to
   def self.validateTransaction(trans)

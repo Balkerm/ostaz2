@@ -16,10 +16,16 @@
   <tr>
     <td><%= transaction.id %></td>
     <td><%= transaction.amount %></td>
-    <td><%= transaction.from.name %></td>	
-    <td><%= transaction.to.name %></td>
+	<td><%= link_to  transaction.from.name , transaction.from %></td>
+	<td><%= link_to  transaction.to.name , transaction.to %></td>
 	<td><%= transaction.created_at  %></td>
-	<td><%= transaction.receipt.nil? ? '-' : transaction.receipt_file_name %></td>
+	<td>
+	<% if (transaction.receipt_file_name.nil?) %>
+		-
+	<% else %>
+		<%= transaction.receipt_file_name %>
+	<% end %>
+	</td>
     <td><%= link_to 'Show', transaction %></td> 
 	<% if can? :update, Transaction %>
 	<td><%= link_to 'Edit', edit_transaction_path(transaction) %></td> 	
