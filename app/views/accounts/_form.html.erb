@@ -29,11 +29,11 @@
   </div>
   <div class="field">
     <%= f.label :balance %><br />
-    <%= f.number_field :balance,:min =>0 %>
+    <%= f.number_field :balance,:min =>0 , :readonly => f.object.persisted? %>
   </div>  
    <div class="field">
 	<%= f.label :AccountType_id %><br />
-	<%= f.collection_select :AccountType_id, @accountTypes, :id, :name, :prompt => "Please select ...." %>
+	<%= f.collection_select :AccountType_id, @accountTypes, :id, :name, {:prompt => "Please select ...." }, { :disabled => f.object.persisted? }  %>
   </div>
   <div class="actions">
     <%= f.submit %>
