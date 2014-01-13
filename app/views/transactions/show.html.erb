@@ -28,7 +28,9 @@
 	<% if @transaction.receipt_file_name.nil? %>
 		-
 	<% else %>
-		<%= link_to @transaction.receipt_file_name, 'receipt/'+ @transaction.id.to_s %>
+		<%=  @transaction.receipt_file_name %>
+        <a data-toggle="modal" href="#receipt-<%= @transaction.id%>" class="btn btn-mini" type="button">view</a>
+        <%= render 'receipt' %>
 	<% end %>
 </p>
 
