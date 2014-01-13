@@ -50,9 +50,10 @@ class TransactionsController < ApplicationController
 	@transaction.description = params[:transaction][:description]
 	@transaction.to = @acc_to
 	@transaction.from = @acc_from
+	@transaction.receipt = params[:transaction][:receipt]
 	@error = Transaction.validateTransaction(@transaction) 
 	if(@error != "")
-		@accounts = @account = Account.where("name not like ?","total%").accessible_by(current_ability)
+		@accounts  = Account.where("name not like ?","total%").accessible_by(current_ability)
 		respond_to do |format|
 			format.html { render action: "new" }
 			format.json { render json: @transaction.errors, status: :unprocessable_entity }
@@ -65,7 +66,7 @@ class TransactionsController < ApplicationController
         format.html { redirect_to @transaction, notice: 'Transaction was successfully saved.' }
         format.json { render json: @transaction, status: :created, location: @transaction }
       else
-		@accounts = @account = Account.where("name not like ?","total%").accessible_by(current_ability)
+		@accounts  = Account.where("name not like ?","total%").accessible_by(current_ability)
         format.html { render action: "new" }
         format.json { render json: @transaction.errors, status: :unprocessable_entity }
       end
@@ -99,5 +100,9 @@ class TransactionsController < ApplicationController
       format.html { redirect_to transactions_url }
       format.json { head :no_content }
     end
+  end
+  
+  def receipt
+	@transaction = Transaction.find_by_id(params[:id])
   end
 end

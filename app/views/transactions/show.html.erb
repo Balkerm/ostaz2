@@ -23,6 +23,13 @@
   <%= @transaction.to.name %>
 </p>
 
-
+<p>
+	<b>Receipt:</b>
+	<% if @transaction.receipt_file_name.nil? %>
+		-
+	<% else %>
+		<%= link_to @transaction.receipt_file_name, 'receipt/'+ @transaction.id.to_s %>
+	<% end %>
+</p>
 
 <%= link_to 'Back', transactions_path %>
