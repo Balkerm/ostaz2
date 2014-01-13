@@ -6,7 +6,7 @@ Feature: Manage Transactions
 
  Scenario: Successfully add transaction
 	Given I am logged in as accountant
-	And I have main accounts with initial eqity 2000
+	And I have main accounts with initial eqity "2000"
 	And I have the following accounts
 	| name                    | balance |
 	| acc1                    | 200     |
@@ -17,7 +17,7 @@ Feature: Manage Transactions
 	
 Scenario: Failed to add transaction
 	Given I am logged in as accountant
-	And I have main accounts with initial eqity 2000
+	And I have main accounts with initial eqity "2000"
 	And I have the following accounts
 	| name                    | balance |
 	| acc1                    | 200     |

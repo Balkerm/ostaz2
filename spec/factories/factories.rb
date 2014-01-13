@@ -10,10 +10,7 @@ FactoryGirl.define do
   end
 
 ################################################################################
-  factory :account_type_assets, class: AccountType do
-	ignore do
-		balance  0 
-	end
+  factory :account_type_assets, class: AccountType do	
 	name 'Assets'
 	initialize_with { AccountType.find_or_create_by_name('Assets')}
   end
@@ -22,10 +19,7 @@ FactoryGirl.define do
 	name 'Liabilities'
 	initialize_with { AccountType.find_or_create_by_name('Liabilities')}
   end
-  factory :account_type_equity, class: AccountType do
-  ignore do
-		balance  0 
-	end
+  factory :account_type_equity, class: AccountType do  
 	name 'Equity'
 	initialize_with { AccountType.find_or_create_by_name('Equity')}
   end
@@ -53,33 +47,29 @@ FactoryGirl.define do
 	name  'total_Assets'
 	#AccountType  AccountType.find_by_name('Assets')
     AccountType  {FactoryGirl.create(:account_type_assets)}
-    #user  FactoryGirl.create(:accountant) 
-	balance  0
+    #user  FactoryGirl.create(:accountant) 	
   end
-  factory :account_main_liabilities, class: Account do
-    name  'total_Liabilities'	
+  factory :account_main_liabilities, class: Account do    
+	name  'total_Liabilities'	
 	#AccountType  AccountType.find_by_name('Liabilities')
     AccountType  {FactoryGirl.create(:account_type_liabilities)}
-    #user  FactoryGirl.create(:accountant) 
-	balance  0
+    #user  FactoryGirl.create(:accountant) 	
   end
-  factory :account_main_equity, class: Account do
-    name  'total_Equity'	
+  factory :account_main_equity, class: Account do    
+	name  'total_Equity'	
     #AccountType  AccountType.find_by_name('Equity')
 	AccountType  {FactoryGirl.create(:account_type_equity)}
-    #user  FactoryGirl.create(:accountant) 
-	balance  0
+    #user  FactoryGirl.create(:accountant) 	
   end
   factory :account_main_expenses, class: Account do
     name  'total_Expenses'	
 	#AccountType  AccountType.find_by_name('Expenses')
     AccountType  {FactoryGirl.create(:account_type_expenses)}
     #user  FactoryGirl.create(:accountant) 
-	balance  0
   end
   factory :account_assets, class: Account , parent: :account_main_assets do
 	ignore do
-		balance  0 
+		balance  0.0
 		name  'acc_expensses'
 	end
 	#AccountType  AccountType.find_by_name('Assets')
@@ -88,7 +78,7 @@ FactoryGirl.define do
   
   factory :account_liabilities, class: Account, parent: :account_main_liabilities do
     ignore do
-		balance  0 
+		balance  0.0 
 		name  'acc_expensses'
 	end
 	#AccountType  AccountType.find_by_name('Liabilities')
@@ -96,7 +86,7 @@ FactoryGirl.define do
   end
   factory :account_equity, class: Account,parent: :account_main_equity do
     ignore do
-		balance  0 
+		balance  0.0 
 		name  'acc_expensses'
 	end	
 	#AccountType  AccountType.find_by_name('Equity')
@@ -105,7 +95,7 @@ FactoryGirl.define do
   end
   factory :account_expenses, class: Account, parent: :account_main_expenses do
 	ignore do
-		balance  0 
+		balance  0.0
 		name  'acc_expensses'
 	end
 	#AccountType  AccountType.find_by_name('Expenses')

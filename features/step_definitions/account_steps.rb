@@ -1,5 +1,5 @@
 ################### Given #################################3
-Given /^I have main accounts with initial eqity (.*)$/ do |e1|
+Given /^I have main accounts with initial eqity "(.*)"$/ do |e1|
 	create_main_accounts(e1)
 end
 
@@ -24,7 +24,7 @@ Given /I have a sub account "(.*)"$/ do |e1|
 	create_account(e1,0)
 end
 ################### When #################################3
-When /^I create new account "(.*)" with balance (.*)$/ do |e1,e2|
+When /^I create new account "(.*)" with balance "(.*)"$/ do |e1,e2|
 create_account(e1,e2)
 end 
 
@@ -51,14 +51,13 @@ end
 
 def create_main_accounts(amount)
 	#@user = FactoryGirl.create(:accountant)
-	@main_assets = FactoryGirl.create(:account_main_assets,:balance => amount)
-	
+	@main_assets = FactoryGirl.create(:account_main_assets, :balance => amount,:user =>@user)
 	#@main_assets.user = @user
-	@main_liabilities = FactoryGirl.create(:account_main_liabilities)
+	@main_liabilities = FactoryGirl.create(:account_main_liabilities,:balance => "0",:user =>@user)
 	#@main_liabilities.user = @user
-	@main_expenses = FactoryGirl.create(:account_main_expenses)
+	@main_expenses = FactoryGirl.create(:account_main_expenses,:balance =>"0",:user =>@user)
 	#@main_expenses.user = @user
-	@main_equity = FactoryGirl.create(:account_main_equity,:balance => amount)
+	@main_equity = FactoryGirl.create(:account_main_equity,:balance => amount,:user =>@user)
 	#@main_equity.user = @user
 	#@main_equity.balance = amount
 end
