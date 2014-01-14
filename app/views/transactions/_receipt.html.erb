@@ -1,0 +1,12 @@
+<div id="receipt-<%= @transaction.id%>" class="modal" style="display: none;background-color: #B2B2B2;">
+  <div class="modal-header">
+      <a class="close" data-dismiss="modal">&#215;</a>
+      <h3>View Receipt</h3>
+  </div>
+  <div class="modal-body">
+  <%= image_tag @transaction.receipt.url %>
+  </div>
+  <div class="modal-footer">      
+      <a class="btn" data-dismiss="modal" href="#">Close</a>
+    </div>
+</div>

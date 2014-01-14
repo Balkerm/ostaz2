@@ -1,0 +1,44 @@
+<%= form_for @transaction,  :html => { :multipart => true }  do |f| %>
+  <% if @transaction.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@transaction.errors.count, "error") %> prohibited this transaction from being saved:</h2>
+
+      <ul>
+      <% @transaction.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <% if !@error.nil? && @error != "" %>
+    <div id="error_explanation">
+      <h2> error prohibited this account from being saved:</h2>
+      <ul>      
+        <li><%= @error %></li>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :description %><br />
+    <%= f.text_field :description %>
+  </div>
+  <div class="field">
+    <%= f.label :amount %><br />
+    <%= f.number_field :amount,:min => 10, :readonly => f.object.persisted? %>
+  </div>  
+  <div class="field">
+	<%= f.label :from %><br />
+	<%= f.collection_select :from_id, @accounts, :id, :name, {:prompt => "Please select ...."},{ :disabled => f.object.persisted? }%>
+  </div>
+  <div class="field">
+	<%= f.label :to %><br />
+	<%= f.collection_select :to_id, @accounts, :id, :name, {:prompt => "Please select ...."},{ :disabled => f.object.persisted? } %>
+  </div>
+  <div class="field">
+	<%= f.file_field :receipt %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

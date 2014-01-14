@@ -7,10 +7,18 @@
       <% @account.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
       <% end %>
+	  
       </ul>
     </div>
   <% end %>
-
+   <% if !@error.nil? && @error != "" %>
+    <div id="error_explanation">
+      <h2> error prohibited this account from being saved:</h2>
+      <ul>      
+        <li><%= @error %></li>
+      </ul>
+    </div>
+  <% end %>
   <div class="field">
     <%= f.label :name %><br />
     <%= f.text_field :name %>
@@ -21,11 +29,11 @@
   </div>
   <div class="field">
     <%= f.label :balance %><br />
-    <%= f.text_field :balance %>
+    <%= f.number_field :balance,:min =>0 , :readonly => f.object.persisted? %>
   </div>  
    <div class="field">
 	<%= f.label :AccountType_id %><br />
-	<%= f.collection_select :AccountType_id, @accountTypes, :id, :name, :prompt => "Please select ...." %>
+	<%= f.collection_select :AccountType_id, @accountTypes, :id, :name, {:prompt => "Please select ...." }, { :disabled => f.object.persisted? }  %>
   </div>
   <div class="actions">
     <%= f.submit %>

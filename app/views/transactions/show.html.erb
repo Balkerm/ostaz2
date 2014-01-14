@@ -1,0 +1,38 @@
+
+<table class="table table-condensed">
+<th style='width:50%'></th>
+<th style='width:50%'></th>
+<tr>
+	<td><b>Date:</b></td>
+	<td><%= @transaction.created_at %></td>
+</tr>
+<tr>
+	<td><b>Description:</b></td>
+	<td><%= @transaction.description %></td>
+</tr>
+<tr>
+	<td><b>Amount</b></td>
+	<td><%= @transaction.amount %></td>
+</tr>
+<tr>
+	<td><b>From:</b></td>
+	<td><%= @transaction.from.name %></td>
+</tr>
+<tr>
+	<td><b>To:</b></td>
+	<td><%= @transaction.to.name %></td>
+</tr>
+<tr>
+	<td><b>Receipt:</b></td>
+	<td>
+	<% if @transaction.receipt_file_name.nil? %>
+		-
+	<% else %>
+		<%=  @transaction.receipt_file_name %>
+        <a data-toggle="modal" href="#receipt-<%= @transaction.id%>"  type="button">view</a>
+        <%= render 'receipt' %>
+	<% end %>
+	</td>
+</tr>
+</table>
+<%= link_to 'Back', transactions_path %>

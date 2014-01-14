@@ -1,9 +1,22 @@
 Ostaz2::Application.routes.draw do
-  resources :accounts
-
-
-  resources :account_types
-
+  
+  authenticated :user do
+    root :to => 'home#index'
+  end
+  root :to => "home#index"
+  #root :to => 'accounts#index'
+   
+  devise_for :users, :controllers => {:registrations => "users/registrations"}
+  resources :users
+  
+  resources :transactions,except: [:destroy]
+  resources :accounts,except: [:destroy]
+  #resources :account_types
+  resources :totals , only: [:index,:create,:new]#except: :destroy
+  #get 'transactions/receipt/:id'
+  get ':controller(/:action(/:id))'
+  #get 'totals/edit'
+  #get '/totals/new'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
@@ -54,7 +67,7 @@ Ostaz2::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  # root :to => 'welcome#index'
+  
 
   # See how all your routes lay out with "rake routes"
 
