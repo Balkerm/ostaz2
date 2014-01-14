@@ -1,22 +1,22 @@
-<p>
-  <b>Name:</b>
-  <%= @account.name %>
-</p>
 
-<p>
-  <b>Description:</b>
-  <%= @account.description %>
-</p>
-
-<p>
-  <b>Balance:</b>
-  <%= @account.balance %>
-</p>
-
-<p>
-  <b>Accounttype:</b>
-  <%= @account.AccountType.name%>
-</p>
-
-
+<table class="table table-condensed">
+<th style='width:60%'></th>
+<th style='width:40%'></th>
+<tr>
+	<td><b>Name:</b></td>
+	<td><%= @account.name %></td>
+</tr>
+<tr>
+	<td><b>Description:</b></td>
+	<td><%= @account.description %></td>
+</tr>
+<tr>
+	<td><b>Balance:</b></td>
+	<td> <%= @account.balance %></td>
+</tr>
+<tr>
+	<td> <b>Accounttype:</b></td>
+	<td> <%= @account.AccountType.name%></td>
+</tr>
+</table>
 <%= link_to 'Back', accounts_path %>

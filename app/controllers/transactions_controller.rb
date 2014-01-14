@@ -101,8 +101,4 @@ class TransactionsController < ApplicationController
       format.json { head :no_content }
     end
   end
-  
-  def receipt
-	@transaction = Transaction.find_by_id(params[:id])
-  end
 end
