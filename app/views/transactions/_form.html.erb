@@ -36,6 +36,12 @@
 	<%= f.collection_select :to_id, @accounts, :id, :name, {:prompt => "Please select ...."},{ :disabled => f.object.persisted? } %>
   </div>
   <div class="field">
+    <%= f.label :receipt %><br />
+	<% if(f.object.persisted?)%>
+		<%=  @transaction.receipt_file_name %>
+        <a data-toggle="modal" href="#receipt-<%= @transaction.id%>"  type="button">view</a>
+        <%= render 'receipt' %>
+    <% end %>
 	<%= f.file_field :receipt %>
   </div>
   <div class="actions">
