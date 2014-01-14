@@ -5,8 +5,7 @@ class Ability
 	user ||= User.new # guest user (not logged in)
     if user.has_role? :Owner	
       can [:update], User
-	  can [:read],:all
-	  can [:receipt],:Transaction
+	  can [:read],:all	 
 	elsif user.has_role? :Accountant
 		can [:create],[Account,Transaction]
 		can [:read,:update], Account,:user_id => user.id		
